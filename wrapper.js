@@ -33,4 +33,4 @@ function wrapit(dom) {
 
 }
 
-alert("All HAIL the hypnotoad! your pupet now has links!");
+alert("All HAIL the hypnotoad! your puppet log now has links!");
