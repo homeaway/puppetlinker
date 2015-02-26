@@ -1,0 +1,20 @@
+{
+  "manifest_version":2,
+  "name": "Puppet Dashboard File to Link Converter",
+  "version": "0.1",
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+    "tabs", "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+    "matches": [
+      "http://puppet-dashboard.aus1.homeaway.live:3000/*"
+    ],
+    "js": ["wrapper.js"],
+    "run_at": "document_end"
+    }
+  ]
+}
