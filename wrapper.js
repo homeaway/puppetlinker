@@ -1,18 +1,32 @@
 
-var doc = document.getElementsByTagName("code")[0];
 
 // remove the wbr tags from string elements
 var wbrs = document.getElementsByTagName('wbr');
 while (wbrs.length) {
-      wbrs[0].parentNode.innerHTML.replace(/["]/g, '');
-      //wbrs[0].parentNode.removeChild(wbrs[0]);
+      parent = wbrs[0].parentNode;
+      parent.innerHTML.replace(/["]/g, '');
+      parent.className = 'link';
+      parent.removeChild(wbrs[0]);
 }
 
-//var oldString = string.match(/\/etc\/puppet\/environments\/\.*pp/);
-//var trimmed = oldString.replace(/\/etc\/puppet\/environments\//,'');
-//var wrapper = '<a href=“http://github.wvrgroup.internal/operations/puppet-modules/blob'+trimmed+'>'+oldString+'</a>';
+var doc = document.getElementsByClassName("link");
+for (i in doc) {
+  console.log(doc[i].innerHTML);
+  if (doc[i].innerHTML.match(/\/etc\/puppet\/environments\/.*pp/)) {
+    wrapit(doc[i]);
+  }
+  else { 
+  }
+}
 
-//document.html.replace(oldString, wrapper);
+function wrapit(dom) {
+  var oldString = dom.innerHTML.match(/\/etc\/puppet\/environments\/.*pp/);
+  //console.log(oldString);
+  var trimmed = oldString[0].replace(/\/etc\/puppet\/environments\//,'');
+  var wrapper = '<a href=“http://github.wvrgroup.internal/operations/puppet-modules/blob'+trimmed+'">'+oldString[0]+'</a>';
 
+  dom.innerHTML.replace(oldString[0], wrapper);
 
-alert("hello");
+}
+
+alert("All HAIL the hypnotoad! your pupet now has links!");
