@@ -27,7 +27,7 @@ function wrapit(dom) {
   var oldString = dom.innerHTML.match(/\/etc\/puppet\/environments\/.*pp/);
   //console.log(oldString);
   var trimmed = oldString[0].replace(/\/etc\/puppet\/environments\//,'');
-  var wrapper = "<a href='http://github.wvrgroup.internal/operations/puppet-modules/blob"+trimmed+"'>"+oldString[0]+"</a>";
+  var wrapper = "<a href='http://github.wvrgroup.internal/operations/puppet-modules/blob/"+trimmed+"'>"+oldString[0]+"</a>";
 
   dom.innerHTML = wrapper;
 
