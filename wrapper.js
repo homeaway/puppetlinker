@@ -11,11 +11,15 @@ while (wbrs.length) {
 
 var doc = document.getElementsByClassName("link");
 for (i in doc) {
-  console.log(doc[i].innerHTML);
-  if (doc[i].innerHTML.match(/\/etc\/puppet\/environments\/.*pp/)) {
-    wrapit(doc[i]);
+  try {
+    if (doc[i].innerHTML.match(/\/etc\/puppet\/environments\/.*pp/)) {
+      wrapit(doc[i]);
+    }
   }
-  else { 
+  catch(e){
+    if(e){
+      // If fails, Do something else
+    }
   }
 }
 
