@@ -2,11 +2,12 @@
   "manifest_version":2,
   "name": "Puppet Dashboard File to Link Converter",
   "version": "0.1",
+  "options_page": "options.html",
   "browser_action": {
     "default_icon": "icon.png"
   },
   "permissions": [
-    "tabs", "<all_urls>"
+    "tabs", "<all_urls>", "storage"
   ],
   "content_scripts": [
     {
