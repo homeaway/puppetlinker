@@ -12,7 +12,7 @@
   "content_scripts": [
     {
     "matches": [
-      "http://puppet-dashboard.aus1.homeaway.live:3000/*"
+     "http://*/*", "https://*/*"
     ],
     "js": ["wrapper.js"],
     "run_at": "document_end"

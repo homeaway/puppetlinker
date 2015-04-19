@@ -1,0 +1,65 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+  <head>
+    <title>Getting Started Extension's Popup</title>
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+      }
+      label { 
+        font-size: 8px;
+        display: block;
+      }
+      input {
+        display: inline-block;
+        width: 180px;
+        border-radius: 6px;
+      }
+      button {
+        width: 75px;
+        float: none;
+        background-color: #2A6ebb;
+        color: #ffffff;
+        margin: 5px 5px 5px 0px;
+        border-radius: 2px;
+      }
+
+      #status {
+        /* avoid an excessively wide status text */
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 400px;
+      }
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script src="options.js"></script>
+  </head>
+  <body>
+    <div id="giturl">
+      <label for="gitrepo">Git Repo Where pp files are located</label>
+      <input type="text" id="gitrepo"></input>
+    </div>
+    <div id="puppet-dash-url">
+      <label for="dashurl">Puppet Dashboard URL</label>
+      <input type="text" id="dashurl"></input>
+    </div>
+
+    <button id="save">save</button>
+    <img id="image-result" hidden>
+    <div id='status'></div>
+  </body>
+</html>
+

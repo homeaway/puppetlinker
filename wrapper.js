@@ -1,49 +1,58 @@
-var puppet_dashboard = 'http://puppet-dashboard.aus1.homeaway.live'; 
-var github = 'http://github.wvrgroup.internal/operations/puppet-modules/blob/';
+var puppetdash;
+var git;
 
-function get_storage_items() {
-  chrome.storage.sync.get(null,
-    function(items) {
-      puppet_dashboard = items['puppetdash'];
-      github = items['gitrepo'];
-    });
+function puppet_dashboard() {
+  chrome.storage.sync.get("puppetdash", function(obj) {
+    puppetdash = obj.puppetdash;
+  });
+}
+/*'http://puppet-dashboard.aus1.homeaway.live'; */
+function github() {
+  chrome.storage.sync.get("gitrepo", function(obj) {
+    git = obj.gitrepo;
+  });
 }
 
-function checkDashboardDomain(){
-    get_storage_items();
-    if( puppet_dashboard.includes(location.origin)) {
+/*'http://github.wvrgroup.internal/operations/puppet-modules/blob/';*/
+//checkDashboardDomain();
+init = function(){
+  puppet_dashboard();
+  github();
 
-    /*
-    chrome.storage.sync.get("gitrepo", function(obj) {
-      github = obj['gitrepo']
-    });
-    */
+  console.log("puppet dashboard is: "+puppetdash);
+  
+//  if puppetdash.includes(location.origin) {
+  console.log("after if reached");
+  console.log("git set to: "+git);
+  
+  // remove the wbr tags from string elements
+  var wbrs = document.getElementsByTagName('wbr');
+  while (wbrs.length) {
+        parent = wbrs[0].parentNode;
+        parent.innerHTML.replace(/["]/g, '');
+        parent.className = 'link';
+        parent.removeChild(wbrs[0]);
+  }
 
-    // remove the wbr tags from string elements
-    var wbrs = document.getElementsByTagName('wbr');
-    while (wbrs.length) {
-          parent = wbrs[0].parentNode;
-          parent.innerHTML.replace(/["]/g, '');
-          parent.className = 'link';
-          parent.removeChild(wbrs[0]);
-    }
-
-    var doc = document.getElementsByClassName("link");
-    for (i in doc) {
-      try {
-        // you need to tweak this for your environment
-        if (doc[i].innerHTML.match(/\/etc\/puppet\/environments\/.*pp/)) {
-          wrapit(doc[i]);
-        }
+  var doc = document.getElementsByClassName("link");
+  for (i in doc) {
+    try {
+      // you need to tweak this for your environment
+      if (doc[i].innerHTML.match(/\/etc\/puppet\/environments\/.*pp/)) {
+        wrapit(doc[i]);
       }
-      catch(e){
-        if(e){
-          // If fails, Do something else
-        }
+    }
+    catch(e){
+      if(e){
+        // If fails, Do something else
       }
     }
   }
+// } 
 }
+
+init();
+
 function wrapit(dom) {
   var oldString = dom.innerHTML.match(/\/etc\/puppet\/environments\/.*pp/);
   //console.log(oldString);
@@ -54,7 +63,6 @@ function wrapit(dom) {
 
 }
 
-document.addEventListener('DOMContentLoaded', checkDashboardDomain);
-
+//document.addEventListener('DOMContentLoaded', checkDashboardDomain )
 
 //alert("All HAIL the hypnotoad! your puppet log now has links!");
