@@ -1,12 +1,18 @@
-# puppetlinker
-chrome extension for injecting links to puppet resources in the puppet dashboard
+
+puppetlinker
+============
+
+chrome extension for injecting links to puppet resources
 
 INSTALLATION:
+
 clone the repo.
 
 In chrome, go to tools > extensions. choose load unpacked extension and select the puppetlinker directory.
+Done.
+If you see Kermit, you're good.
 
-You're Done. If you see Kermit, you're good.
+
 
 /* Copyright (c) 2015 HomeAway, Inc.
 * All rights reserved.  http://www.homeaway.com
