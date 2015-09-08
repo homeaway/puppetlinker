@@ -6,14 +6,14 @@ function puppet_dashboard() {
     puppetdash = obj.puppetdash;
   });
 }
-/*'http://puppet-dashboard.aus1.homeaway.live'; */
+
 function github() {
   chrome.storage.sync.get("gitrepo", function(obj) {
     git = obj.gitrepo;
   });
 }
 
-/*'http://github.wvrgroup.internal/operations/puppet-modules/blob/';*/
+
 //checkDashboardDomain();
 init = function(){
   puppet_dashboard();
